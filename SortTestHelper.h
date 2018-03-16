@@ -8,6 +8,7 @@
 #include <iostream>
 #include <ctime>
 #include <cassert>
+#include <algorithm>
 
 using namespace std;
 
@@ -21,6 +22,21 @@ namespace SortTestHelper {
         srand(time(NULL));
         for (int i = 0; i < n; i++) {
             arr[i] = rand() % (rangeR - rangeL + 1) + rangeL;
+        }
+        return arr;
+    }
+
+    int* generateNearlyOrderArray(int n, int swapTimes) {
+        int* arr = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = i;
+        }
+        srand(time(NULL));
+        for (int i = 0; i < swapTimes; i++) {
+            int x = rand() % n;
+            int y = rand() % n;
+            swap(arr[x], arr[y]);
         }
         return arr;
     }
@@ -50,6 +66,13 @@ namespace SortTestHelper {
         clock_t endTime = clock();
         assert(isSorted(arr, n));
         cout << sortName << " need  " << (double)(endTime - startTime) / CLOCKS_PER_SEC << " s" << endl;
+    }
+
+    template <typename T>
+    T* copyArray(T odlArr[], int n) {
+        T* newArr = new T[n];
+        copy(odlArr, odlArr + n, newArr);
+        return newArr;
     }
 }
 
