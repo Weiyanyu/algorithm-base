@@ -35,6 +35,7 @@ int main() {
 //    int *quick3Arr = SortTestHelper::copyArray(arr, n);
     int *heap1Arr = SortTestHelper::copyArray(arr, n);
     int *heap2Arr = SortTestHelper::copyArray(arr, n);
+    int *heap3Arr = SortTestHelper::copyArray(arr, n);
 
 
 //    SortTestHelper::testSort("Selection Sort", selectionSort, arr, n);
@@ -47,6 +48,7 @@ int main() {
 //    SortTestHelper::testSort("Quick3 Sort", quickSort3, quick3Arr, n);
     SortTestHelper::testSort("HeapSort1 : ", HeapSort1, heap1Arr, n);
     SortTestHelper::testSort("HeapSort2 : ", HeapSort2, heap2Arr, n);
+    SortTestHelper::testSort("HeapSort3 : ", HeapSort, heap3Arr, n);
 
     delete[] arr;
 //    delete[] insertArr;
@@ -58,6 +60,7 @@ int main() {
 //    delete[] quick3Arr;
     delete[] heap1Arr;
     delete[] heap2Arr;
+    delete[] heap3Arr;
 
 
 
