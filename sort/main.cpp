@@ -15,6 +15,7 @@
 #include "QuickSort2.h"
 #include "QuickSort3.h"
 #include "Inversion.h"
+#include "../heap/HeapSort.h"
 
 using namespace std;
 
@@ -23,8 +24,8 @@ int main() {
 
 //    Sort 比较
 
-//    int n = 1000000;
-//    int* arr = SortTestHelper::generateNearlyOrderArray(n, 10);
+    int n = 1000000;
+    int* arr = SortTestHelper::generateNearlyOrderArray(n, 10);
 //    int *insertArr = SortTestHelper::copyArray(arr, n);
 //    int *bubbleArr = SortTestHelper::copyArray(arr, n);
 //    int *shellArr = SortTestHelper::copyArray(arr, n);
@@ -32,6 +33,9 @@ int main() {
 //    int *quickArr = SortTestHelper::copyArray(arr, n);
 //    int *quick2Arr = SortTestHelper::copyArray(arr, n);
 //    int *quick3Arr = SortTestHelper::copyArray(arr, n);
+    int *heap1Arr = SortTestHelper::copyArray(arr, n);
+    int *heap2Arr = SortTestHelper::copyArray(arr, n);
+
 
 //    SortTestHelper::testSort("Selection Sort", selectionSort, arr, n);
 //    SortTestHelper::testSort("Insertion Sort", insertionSort, insertArr, n);
@@ -41,8 +45,10 @@ int main() {
 //    SortTestHelper::testSort("Quick Sort", quickSort, quickArr, n);
 //    SortTestHelper::testSort("Quick2 Sort", quickSort2, quick2Arr, n);
 //    SortTestHelper::testSort("Quick3 Sort", quickSort3, quick3Arr, n);
+    SortTestHelper::testSort("HeapSort1 : ", HeapSort1, heap1Arr, n);
+    SortTestHelper::testSort("HeapSort2 : ", HeapSort2, heap2Arr, n);
 
-//    delete[] arr;
+    delete[] arr;
 //    delete[] insertArr;
 //    delete[] bubbleArr;
 //    delete[] shellArr;
@@ -50,15 +56,8 @@ int main() {
 //    delete[] quickArr;
 //    delete[] quick2Arr;
 //    delete[] quick3Arr;
-
-    vector<int> data = {1,2,3,4,5,6,7,0};
-    vector<int> aux;
-    for (int n : data) {
-        aux.push_back(n);
-    }
-
-    cout << easyWays(data) << endl;
-    cout << mergeWays(data, aux, 0, data.size()-1) << endl;
+    delete[] heap1Arr;
+    delete[] heap2Arr;
 
 
 
