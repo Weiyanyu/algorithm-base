@@ -6,22 +6,21 @@
 #include "tree/BinarySearch.h"
 #include "sort/QuickSort3.h"
 #include "sort/SortTestHelper.h"
+#include "tree/BST.h"
 
 using namespace std;
 
 int main() {
 
-    int n = 100000;
-    int *arr = SortTestHelper::generateRandomArray(n, 0, n);
+    BST<int, string> bst = BST<int, string>();
 
-    SortTestHelper::testSort("Quick three ways : ", quickSort3, arr, n);
+    srand(time(NULL));
 
-    int ans = binarySearch(arr, n, 233);
-    if (ans != -1) {
-        cout << "found target : " << ans << endl;
-    } else {
-        cout << "not found target" << endl;
+    for (int i = 0; i < 20; i++) {
+        bst.loopInsert(rand() % 20, "yeonon");
     }
+
+    bst.inorder();
 
     return 0;
 }
