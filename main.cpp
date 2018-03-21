@@ -3,9 +3,7 @@
 //
 
 #include <iostream>
-#include "tree/BinarySearch.h"
 #include "sort/QuickSort3.h"
-#include "sort/SortTestHelper.h"
 #include "tree/BST.h"
 
 using namespace std;
@@ -20,7 +18,7 @@ int main() {
         bst.loopInsert(rand() % 20, "yeonon");
     }
 
-    bst.inorder();
+    bst.inOrder();
 
     return 0;
 }

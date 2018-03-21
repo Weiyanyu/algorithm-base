@@ -6,6 +6,7 @@
 #define CPP_BST_H
 
 #include <iostream>
+#include <queue>
 
 template <typename Key, typename Value>
 class BST {
@@ -78,12 +79,40 @@ private:
     }
 
 
-
-    void inorder(Node *node) {
+    void preOrder(Node* node) {
         if (node == nullptr) return;
-        inorder(node->left);
         std::cout << node->key << " ";
-        inorder(node->right);
+        preOrder(node->left);
+        preOrder(node->right);
+    }
+
+    void inOrder(Node* node) {
+        if (node == nullptr) return;
+        inOrder(node->left);
+        std::cout << node->key << " ";
+        inOrder(node->right);
+    }
+
+    void postOrder(Node* node) {
+        if (node == nullptr) return;
+        postOrder(node->left);
+        postOrder(node->right);
+        std::cout << node->key << " ";
+    }
+
+    void levelOrder(Node* root) {
+        std::queue<Node* > q;
+        if (root == nullptr) return;
+        q.push(root);
+        while (!q.empty()) {
+            Node* node = q.front();
+            q.pop();
+            std::cout << node->key << " ";
+            if (node->left)
+                q.push(node->left);
+            if (node->right)
+                q.push(node->right);
+        }
     }
 
     bool contain(Node* node, Key key) {
@@ -112,13 +141,49 @@ private:
         }
     }
 
+    Node* minimum(Node* node) {
+        if (node->left == nullptr)
+            return node;
+        return minimum(node->left);
+    }
+
+    Node* maxmum(Node* node) {
+        if (node->right == nullptr)
+            return node;
+        return maxmum(node->right);
+    }
+
+    Node* removeMin(Node* node) {
+        if (node->left == nullptr) {
+            Node* rightNode = node->right;
+            delete node;
+            count--;
+            return rightNode;
+        }
+
+        node->left = removeMin(node->left);
+        return node;
+    }
+
+    Node* removeMax(Node* node) {
+        if (node->right == nullptr) {
+            Node* leftNode = node->left;
+            delete node;
+            count--;
+            return leftNode;
+        }
+
+        node->right = removeMax(node->right);
+        return node;
+    }
+
 public:
     BST() {
         root = nullptr;
         count = 0;
     }
     ~BST() {
-        //TODO ~BST()
+        destory(root);
     }
 
     int size() {
@@ -145,8 +210,51 @@ public:
         return search(root, key);
     }
 
-    void inorder() {
-        inorder(root);
+    //前序遍历
+    void preOrder() {
+        preOrder(root);
+    }
+    //中序遍历
+    void inOrder() {
+        inOrder(root);
+    }
+    //后序遍历
+    void postOrder() {
+        postOrder(root);
+    }
+
+    void levelOrder() {
+        levelOrder(root);
+    }
+
+    void destory(Node* node) {
+        if (node == nullptr) return;
+        destory(node->left);
+        destory(node->right);
+        count--;
+        delete node;
+    }
+
+    Key minimum() {
+        Node* min = minimum(root);
+        return min->key;
+    }
+
+    Key maxmum() {
+        Node* max = maxmum(root);
+        return max->key;
+    }
+
+    void removeMin() {
+        if (root) {
+            root = removeMin(root);
+        }
+    }
+
+    void removeMax() {
+        if (root) {
+            root = removeMax(root);
+        }
     }
 
 };
