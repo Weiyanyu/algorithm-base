@@ -3,22 +3,16 @@
 //
 
 #include <iostream>
-#include "sort/QuickSort3.h"
-#include "tree/BST.h"
+
+#include "Graph/UnionFindTestHelper.h"
 
 using namespace std;
 
 int main() {
-
-    BST<int, string> bst = BST<int, string>();
-
-    srand(time(NULL));
-
-    for (int i = 0; i < 20; i++) {
-        bst.loopInsert(rand() % 20, "yeonon");
-    }
-
-    bst.inOrder();
-
+    int n = 10000000;
+//    UnionFindTestHelper::testUF1(n);
+//    UnionFindTestHelper::testUF2(n);
+    UnionFindTestHelper::testUF3(n);
+    UnionFindTestHelper::testUF4(n);
     return 0;
 }
