@@ -16,7 +16,8 @@ template <typename Graph>
 class ReadGraph {
 public:
     ReadGraph(Graph &graph, const string& filename) {
-        ifstream file(filename);
+        ifstream file;
+        file.open(filename);
         string line;
         int V,E;
 
