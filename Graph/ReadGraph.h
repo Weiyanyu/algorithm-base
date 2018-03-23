@@ -1,0 +1,43 @@
+//
+// Created by 72419 on 2018/3/23 0023.
+//
+
+#ifndef CPP_READGRAPH_H
+#define CPP_READGRAPH_H
+
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <cassert>
+
+using namespace std;
+
+template <typename Graph>
+class ReadGraph {
+public:
+    ReadGraph(Graph &graph, const string& filename) {
+        ifstream file(filename);
+        string line;
+        int V,E;
+
+        assert(file.is_open());
+
+        assert(getline(file, line));
+
+        stringstream ss(line);
+        ss >> V >> E;
+
+        assert(graph.v() == V);
+        for (int i = 0; i < E; i++) {
+            assert(getline(file, line));
+            stringstream ss(line);
+            int a, b;
+            ss >> a >> b;
+            assert(a >= 0 && a < V);
+            assert(b >= 0 && b < V);
+            graph.addEdge(a, b);
+        }
+    }
+};
+
+#endif //CPP_READGRAPH_H

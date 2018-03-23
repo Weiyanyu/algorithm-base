@@ -3,16 +3,19 @@
 //
 
 #include <iostream>
-
-#include "Graph/UnionFindTestHelper.h"
+#include <map>
+#include <ctime>
+#include "Graph/SparseGraph.h"
+#include "Graph/ReadGraph.h"
 
 using namespace std;
 
 int main() {
-    int n = 10000000;
-//    UnionFindTestHelper::testUF1(n);
-//    UnionFindTestHelper::testUF2(n);
-    UnionFindTestHelper::testUF3(n);
-    UnionFindTestHelper::testUF4(n);
+
+    SparseGraph sparseGraph = SparseGraph(13, false);
+    string filename = "testG1.txt";
+    ReadGraph<SparseGraph> readGraph1 = ReadGraph<SparseGraph>(sparseGraph, filename);
+    sparseGraph.show();
+
     return 0;
 }
